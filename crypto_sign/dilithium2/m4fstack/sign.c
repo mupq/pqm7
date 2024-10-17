@@ -37,7 +37,7 @@ int crypto_sign_keypair(uint8_t *pk, uint8_t *sk) {
   } data;
 
   shake256incctx *s256 = &data.s256;
-  uint8_t *tr          = &data.tr;
+  uint8_t *tr          = data.tr;
   poly *tC             = &data.tC;
 
   /* Get randomness for rho, rhoprime and key */
@@ -158,7 +158,7 @@ int crypto_sign_signature(uint8_t *sig,
   mu = buf;
   rnd = mu + CRHBYTES;
   rhoprime = mu + CRHBYTES;
-  unpack_sk_stack(rho, tr, key, sk);
+  unpack_sk_stack((uint8_t*)rho, (uint8_t*)tr, (uint8_t*)key, sk);
 
   /* Compute mu = CRH(tr, msg) */
   shake256_inc_init(&state.s256);
@@ -343,15 +343,15 @@ int crypto_sign_verify(const uint8_t *sig,
     uint8_t w1_packed[POLYW1_PACKEDBYTES];
     uint8_t wcomp[768];
   } w1_packed_comp;
-  uint8_t *w1_packed = &w1_packed_comp.w1_packed;
-  uint8_t *wcomp  = &w1_packed_comp.wcomp;
+  uint8_t *w1_packed = w1_packed_comp.w1_packed;
+  uint8_t *wcomp  = w1_packed_comp.wcomp;
 
   union {
     uint8_t ccomp[68];
     uint8_t mu[CRHBYTES];
   } ccomp_mu;
-  uint8_t *ccomp = &ccomp_mu.ccomp;
-  uint8_t *mu  = &ccomp_mu.mu;
+  uint8_t *ccomp = ccomp_mu.ccomp;
+  uint8_t *mu  = ccomp_mu.mu;
 
   shake256incctx s256;
 
@@ -361,9 +361,9 @@ int crypto_sign_verify(const uint8_t *sig,
     uint8_t c2[CTILDEBYTES];
   } shake_hint;
 
-  uint8_t *hint_ones   = &shake_hint.hint_ones;
+  uint8_t *hint_ones   = shake_hint.hint_ones;
   shake128incctx *s128 = &shake_hint.s128;
-  uint8_t *c2          = &shake_hint.c2;
+  uint8_t *c2          = shake_hint.c2;
 
   if(siglen != CRYPTO_BYTES)
     return -1;
