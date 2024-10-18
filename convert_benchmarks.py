@@ -4,7 +4,7 @@ import sys
 from mupq import mupq
     
 def usage():  
-    print("Usage: python3 convert_benchmarks.py csv|md")
+    print("Usage: python3 convert_benchmarks.py csv|md|tex")
     sys.exit(1) 
  
 if __name__ == "__main__":
@@ -14,6 +14,8 @@ if __name__ == "__main__":
         converter = mupq.CsvConverter()
     elif sys.argv[1] == "md":
         converter = mupq.MarkdownConverter()
+    elif sys.argv[1] == "tex":
+        converter = mupq.TexConverter()
     else:
         usage()
     converter.convert()
