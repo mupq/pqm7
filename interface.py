@@ -11,7 +11,7 @@ def parse_arguments():
         "-p",
         "--platform",
         help="The PQM4 platform",
-        choices=["stm32f4discovery", "nucleo-l476rg", "nucleo-l4r5zi", "cw308t-stm32f3", "cw308t-stm32f415", "mps2-an386"],
+        choices=["stm32f4discovery", "nucleo-l476rg", "nucleo-l4r5zi", "cw308t-stm32f3", "cw308t-stm32f415", "mps2-an386", "nucleo-f767zi"],
         default="stm32f4discovery",
     )
     parser.add_argument(
@@ -40,6 +40,9 @@ def get_platform(args):
     elif args.platform == "nucleo-l4r5zi":
         bin_type = 'hex'
         platform = platforms.OpenOCD("st_nucleo_l4r5.cfg", args.uart)
+    elif args.platform == "nucleo-f767zi":
+        bin_type = 'hex'
+        platform = platforms.OpenOCD("board/st_nucleo_f7.cfg", args.uart)
     elif args.platform in ["cw308t-stm32f3", "cw308t-stm32f415"]:
         bin_type = 'hex'
         platform = platforms.ChipWhisperer()
@@ -55,8 +58,8 @@ def get_platform(args):
 class M4Settings(mupq.PlatformSettings):
     #: Specify folders to include
     scheme_folders = [  # mupq.PlatformSettings.scheme_folders + [
-        ("pqm4", "crypto_kem", ""),
-        ("pqm4", "crypto_sign", ""),
+        ("pqm7-2", "crypto_kem", ""),
+        ("pqm7-2", "crypto_sign", ""),
         ("mupq", "mupq/crypto_kem", ""),
         ("mupq", "mupq/crypto_sign", ""),
         ("pqclean", "mupq/pqclean/crypto_kem", "PQCLEAN"),
@@ -65,6 +68,7 @@ class M4Settings(mupq.PlatformSettings):
 
     platform_memory = {
         'stm32f4discovery': 128*1024,
+        "nucleo-f767zi": 384 * 1024,
         'nucleo-l476rg': 128*1024,
         'cw308t-stm32f3': 64*1024,
         'cw308t-stm32f415': 192*1024,

@@ -99,6 +99,18 @@ void _rcc_set_main_pll(uint32_t source, uint32_t pllm, uint32_t plln, uint32_t p
 		(pllr << RCC_PLLCFGR_PLLR_SHIFT) | RCC_PLLCFGR_PLLREN;
 }
 
+#elif defined(STM32F767ZI)
+#include <libopencm3/stm32/rng.h>
+#include <libopencm3/stm32/f7/rcc.h>
+#include <libopencm3/stm32/rcc.h>
+#include <libopencm3/stm32/gpio.h>
+#include <libopencm3/stm32/usart.h>
+#include <libopencm3/stm32/flash.h>
+
+#define SERIAL_GPIO GPIOD
+#define SERIAL_USART USART3
+#define SERIAL_PINS (GPIO8 | GPIO9)
+#define STM32
 #else
 #error Unsupported libopencm3 board
 #endif
@@ -285,6 +297,20 @@ static void clock_setup(enum clock_mode clock)
   rcc_periph_clock_enable(RCC_RNG);
   rcc_set_clock48_source(RCC_CCIPR_CLK48SEL_HSI48);
   rng_enable();
+#elif defined(STM32F7)
+    switch (clock) {
+    case CLOCK_BENCHMARK:
+        rcc_clock_setup_hsi(&rcc_3v3[RCC_CLOCK_3V3_24MHZ]);
+        break;
+    case CLOCK_FAST:
+    default:
+        rcc_clock_setup_hsi(&rcc_3v3[RCC_CLOCK_3V3_216MHZ]);
+        break;
+    }
+
+    rcc_periph_clock_enable(RCC_RNG);
+    flash_art_enable();
+    flash_prefetch_enable();
 #else
 #error Unsupported platform
 #endif
@@ -318,11 +344,14 @@ void usart_setup()
   usart_disable_rx_interrupt(SERIAL_USART);
   usart_disable_tx_interrupt(SERIAL_USART);
   usart_enable(SERIAL_USART);
+#elif defined(STM32F7)
+    rcc_periph_clock_enable(RCC_GPIOD);
+    rcc_periph_clock_enable(RCC_USART3);
 #else
 #error Unsupported platform
 #endif
 
-#if defined(DISCOVERY_BOARD) || defined(NUCLEO_BOARD) || defined(CW_BOARD)
+#if defined(DISCOVERY_BOARD) || defined(NUCLEO_BOARD) || defined(CW_BOARD) || defined(STM32F7)
   gpio_set_output_options(SERIAL_GPIO, GPIO_OTYPE_OD, GPIO_OSPEED_100MHZ, SERIAL_PINS);
   gpio_set_af(SERIAL_GPIO, GPIO_AF7, SERIAL_PINS);
   gpio_mode_setup(SERIAL_GPIO, GPIO_MODE_AF, GPIO_PUPD_PULLUP, SERIAL_PINS);
