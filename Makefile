@@ -12,7 +12,7 @@ include mk/tests.mk
 
 .PHONY: clean libclean
 
-clean: libclean
+clean:
 	rm -rf elf/
 	rm -rf bin/
 	rm -rf bin-host/
