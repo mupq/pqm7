@@ -1,4 +1,4 @@
-name: nucleo-l476rg build
+name: nucleo-f767zi build
 on:
   push:
     branches:
@@ -14,8 +14,8 @@ jobs:
         with:
           submodules: recursive
       - name: Install Toolchain
-        uses: carlosperate/arm-none-eabi-gcc-action@v1.8.0
+        uses: carlosperate/arm-none-eabi-gcc-action@v1.9.1
         with:
           release: 13.2.Rel1
-      - name: Build All (nucleo-l476rg)
-        run: make PLATFORM=nucleo-l476rg -j2
+      - name: Build All (nucleo-f767zi)
+        run: make PLATFORM=nucleo-f767zi -j2
