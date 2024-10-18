@@ -1,1 +1,0 @@
-../../../mupq/crypto_sign/mayo3/ref/mayo.h
