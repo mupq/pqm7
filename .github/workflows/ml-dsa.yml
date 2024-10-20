@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "master" ]
 jobs:
-  build-all:
+  test-ml-dsa:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,6 +19,8 @@ jobs:
           release: 13.2.Rel1
       - name: Install qemu-system
         run: sudo apt-get install -y qemu-system
+      - name: Install dependencies
+        run:  pip3 install -r requirements.txt
       - name: Test (mps2-an386)
         run: ./test.py PLATFORM=mps2-an386 ml-dsa-44 ml-dsa-65 ml-dsa-87
       - name: Testvectors (mps2-an386)

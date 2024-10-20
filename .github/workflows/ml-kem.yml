@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "master" ]
 jobs:
-  build-all:
+  test-ml-kem:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -17,6 +17,10 @@ jobs:
         uses: carlosperate/arm-none-eabi-gcc-action@v1.8.0
         with:
           release: 13.2.Rel1
+      - name: Install qemu-system
+        run: sudo apt-get install -y qemu-system
+      - name: Install dependencies
+        run:  pip3 install -r requirements.txt
       - name: Test (mps2-an386)
         run: ./test.py PLATFORM=mps2-an386 ml-kem-512 ml-kem-768 ml-kem-1024
       - name: Testvectors (mps2-an386)
