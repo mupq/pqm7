@@ -1,0 +1,23 @@
+name: ml-kem tests
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: [ "master" ]
+jobs:
+  build-all:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Install Toolchain
+        uses: carlosperate/arm-none-eabi-gcc-action@v1.8.0
+        with:
+          release: 13.2.Rel1
+      - name: Test (mps2-an386)
+        run: ./test.py PLATFORM=mps2-an386 ml-kem-512 ml-kem-768 ml-kem-1024
+      - name: Testvectors (mps2-an386)
+        run: ./testvectors.py PLATFORM=mps2-an386 ml-kem-512 ml-kem-768 ml-kem-1024
