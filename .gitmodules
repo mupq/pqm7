@@ -7,3 +7,4 @@
 [submodule "slothy"]
 	path = slothy
 	url = https://github.com/slothy-optimizer/slothy
+	branch = armv7m
