@@ -1,1 +1,0 @@
-../m4f/pointwise_mont.s
