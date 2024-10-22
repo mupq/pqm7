@@ -1,0 +1,1 @@
+elf/crypto_sign_ml-dsa-65_m4f_%.elf: CPPFLAGS += -DPQM7_USE_M4_KECCAK
