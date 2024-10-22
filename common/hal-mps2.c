@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0 or CC0-1.0
 #include <hal.h>
-#if defined(MPS2_AN386)
-#include <CMSDK_CM4.h>
-#elif defined(MPS2_AN500)
+#if defined(MPS2_AN500)
 #include <CMSDK_CM7.h>
 #else
 #error Unsupported mps2 board

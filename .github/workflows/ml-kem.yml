@@ -21,7 +21,7 @@ jobs:
         run: sudo apt-get install -y qemu-system
       - name: Install dependencies
         run:  pip3 install -r requirements.txt
-      - name: Test (mps2-an386)
-        run: ./test.py -p mps2-an386 ml-kem-512 ml-kem-768 ml-kem-1024
-      - name: Testvectors (mps2-an386)
-        run: ./testvectors.py -p mps2-an386 ml-kem-512 ml-kem-768 ml-kem-1024
+      - name: Test (mps2-an500)
+        run: ./test.py -p mps2-an500 ml-kem-512 ml-kem-768 ml-kem-1024
+      - name: Testvectors (mps2-an500)
+        run: ./testvectors.py -p mps2-an500 ml-kem-512 ml-kem-768 ml-kem-1024
