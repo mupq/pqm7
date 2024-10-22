@@ -8,3 +8,6 @@
 	path = slothy
 	url = https://github.com/slothy-optimizer/slothy
 	branch = armv7m
+[submodule "mbed-os"]
+	path = mbed-os
+	url = https://github.com/ARMmbed/mbed-os.git

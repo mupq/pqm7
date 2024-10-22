@@ -11,7 +11,7 @@ def parse_arguments():
         "-p",
         "--platform",
         help="The PQM4 platform",
-        choices=["nucleo-f767zi", "mps2-an386"],
+        choices=["nucleo-f767zi", "mps2-an386", "mps2-an500"],
         default="nucleo-f767zi",
     )
     parser.add_argument(
@@ -49,9 +49,9 @@ def get_platform(args):
     if args.platform == "nucleo-f767zi":
         bin_type = "hex"
         platform = platforms.OpenOCD("board/st_nucleo_f7.cfg", args.uart)
-    elif args.platform == 'mps2-an386':
-        bin_type = 'bin'
-        platform = platforms.Qemu('qemu-system-arm', 'mps2-an386')
+    elif args.platform in ["mps2-an386", "mps2-an500"]:
+        bin_type = "bin"
+        platform = platforms.Qemu("qemu-system-arm", args.platform)
 
     else:
         raise NotImplementedError("Unsupported Platform")
@@ -74,7 +74,8 @@ class M7Settings(mupq.PlatformSettings):
 
     platform_memory = {
         "nucleo-f767zi": 384 * 1024,
-        'mps2-an386': 4096*1024,
+        "mps2-an386": 4096 * 1024,
+        "mps2-an500": 4096 * 1024,
     }
 
     def __init__(
