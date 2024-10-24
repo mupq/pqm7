@@ -1,1 +1,1 @@
-../m7fspeed/slothy_layer.h
+../../ml-kem-768/m7fstack/slothy_layer.h
