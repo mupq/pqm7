@@ -23,5 +23,11 @@
 #define asm_fromplant SLOTHY_NAMESPACE(asm_fromplant)
 #define pointwise_add SLOTHY_NAMESPACE(pointwise_add)
 #define pointwise_sub SLOTHY_NAMESPACE(pointwise_sub)
+#define __matacc_asm_cache_16_32 SLOTHY_NAMESPACE(matacc_asm_cache_16_32)
+#define __matacc_asm_cache_32_32 SLOTHY_NAMESPACE(matacc_asm_cache_32_32)
+#define __matacc_asm_cache_32_16 SLOTHY_NAMESPACE(matacc_asm_cache_32_16)
+#define __matacc_asm_opt_16_32 SLOTHY_NAMESPACE(matacc_asm_opt_16_32)
+#define __matacc_asm_opt_32_32 SLOTHY_NAMESPACE(matacc_asm_opt_32_32)
+#define __matacc_asm_opt_32_16 SLOTHY_NAMESPACE(matacc_asm_opt_32_16)
 
 #endif
