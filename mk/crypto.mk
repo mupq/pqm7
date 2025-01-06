@@ -4,8 +4,8 @@ SYMCRYPTO_SRC = \
 	mupq/common/sp800-185.c \
 	mupq/common/nistseedexpander.c \
 	common/keccakf1600.S \
-	common/keccakf1600_old.s \
-	common/keccakf1600_old_opt_m7.s \
+	common/keccakf1600_adomnicai_m4_opt_m7.s \
+	common/keccakf1600_adomnicai_m7.S \
 	common/aes.c \
 	common/aes-encrypt.S \
 	common/aes-keyschedule.S \
