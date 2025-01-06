@@ -18,7 +18,9 @@ jobs:
         with:
           release: 13.2.Rel1
       - name: Install qemu-system
-        run: sudo apt-get install -y qemu-system
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-system
       - name: Install dependencies
         run:  pip3 install -r requirements.txt
       - name: Test (mps2-an500)
