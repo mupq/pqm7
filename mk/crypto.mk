@@ -4,6 +4,7 @@ SYMCRYPTO_SRC = \
 	mupq/common/sp800-185.c \
 	mupq/common/nistseedexpander.c \
 	common/keccakf1600.S \
+	common/keccakf1600_adomnicai_m4.S \
 	common/keccakf1600_adomnicai_m4_opt_m7.s \
 	common/keccakf1600_adomnicai_m7.s \
 	common/aes.c \
@@ -28,4 +29,3 @@ else
 LDLIBS += -lsymcrypto$(if $(PROFILE_HASHING),-hashprof)
 LIBDEPS += obj/libsymcrypto$(if $(PROFILE_HASHING),-hashprof).a
 endif
-
