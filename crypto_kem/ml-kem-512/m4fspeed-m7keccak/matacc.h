@@ -1,1 +1,1 @@
-../../ml-kem-768/m7fspeed/matacc.h
+../m4fspeed/matacc.h

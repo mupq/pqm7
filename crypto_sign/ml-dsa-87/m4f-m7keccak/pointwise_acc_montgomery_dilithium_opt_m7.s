@@ -1,1 +1,0 @@
-../../ml-dsa-44/m7f/pointwise_acc_montgomery_dilithium_opt_m7.s
