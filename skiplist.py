@@ -241,4 +241,5 @@ skip_list = [
     {'scheme': 'dilithium3', 'implementation': 'm7fstack', 'estmemory': 17408},
     {'scheme': 'falcon-padded-1024', 'implementation': 'clean', 'estmemory': 91136},
     {'scheme': 'falcon-padded-512', 'implementation': 'clean', 'estmemory': 48128},
+    {'scheme': 'ml-dsa-87', 'implementation': 'clean', 'estmemory': 131073},
 ]

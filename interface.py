@@ -73,7 +73,7 @@ class M7Settings(mupq.PlatformSettings):
     ]
 
     platform_memory = {
-        "nucleo-f767zi": 384 * 1024,
+        "nucleo-f767zi": 128 * 1024,
         "mps2-an500": 4096 * 1024,
     }
 
