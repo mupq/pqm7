@@ -24,7 +24,7 @@ ifeq ($(DEVICE),)
 $(warning no DEVICE specified for linker script generator)
 endif
 
-DEVICES_DATA ?= $(OPENCM3_DIR)/ld/devices.data
+DEVICES_DATA ?= ldscripts/devices.data
 
 genlink_family		:=$(shell $(OPENCM3_DIR)/scripts/genlink.py $(DEVICES_DATA) $(DEVICE) FAMILY)
 genlink_subfamily	:=$(shell $(OPENCM3_DIR)/scripts/genlink.py $(DEVICES_DATA) $(DEVICE) SUBFAMILY)
